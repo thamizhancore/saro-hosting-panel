@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saro Hosting</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div class="layout">
+
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="logo-icon">S</div>
+            <div>
+                <strong>Saro Hosting</strong>
+                <small>Control Panel</small>
+            </div>
+        </div>
+
+        <nav>
+            <button class="nav-item active" data-page="overview">🏠 Overview</button>
+            <button class="nav-item" data-page="servers">🎮 Servers</button>
+            <button class="nav-item" data-page="users">👥 Users</button>
+            <button class="nav-item" data-page="backups">💾 Backups</button>
+            <button class="nav-item" data-page="settings">⚙️ Settings</button>
+        </nav>
+
+        <button id="logoutBtn" class="logout">Logout</button>
+
+    </aside>
+
+    <main class="main">
+
+        <header class="topbar">
+            <div>
+                <h2 id="pageTitle">Overview</h2>
+                <span id="welcomeUser">Welcome</span>
+            </div>
+
+            <div class="profile">
+                <div class="avatar">S</div>
+            </div>
+        </header>
+
+        <section id="page-overview" class="page active">
+
+            <div class="stats">
+
+                <div class="stat-card">
+                    <span>VPS</span>
+                    <strong class="online">● Online</strong>
+                </div>
+
+                <div class="stat-card">
+                    <span>CPU</span>
+                    <strong>12%</strong>
+                </div>
+
+                <div class="stat-card">
+                    <span>RAM</span>
+                    <strong>4.2 GB</strong>
+                </div>
+
+                <div class="stat-card">
+                    <span>Disk</span>
+                    <strong>38 GB</strong>
+                </div>
+
+            </div>
+
+            <div class="section-header">
+                <div>
+                    <h3>My Servers</h3>
+                    <p>Servers you have access to</p>
+                </div>
+
+                <button class="primary-btn" onclick="openCreateServer()">
+                    + Create Server
+                </button>
+            </div>
+
+            <div id="serverList" class="server-grid"></div>
+
+        </section>
+
+
+        <section id="page-servers" class="page">
+
+            <div class="section-header">
+                <div>
+                    <h3>Servers</h3>
+                    <p>Manage your Minecraft servers</p>
+                </div>
+
+                <button class="primary-btn" onclick="openCreateServer()">
+                    + Create Server
+                </button>
+            </div>
+
+            <div id="allServers" class="server-grid"></div>
+
+        </section>
+
+
+        <section id="page-users" class="page">
+
+            <div class="section-header">
+                <div>
+                    <h3>Users</h3>
+                    <p>Manage users and server permissions</p>
+                </div>
+
+                <button class="primary-btn" onclick="alert('User creation will be connected to the backend.')">
+                    + Create User
+                </button>
+            </div>
+
+            <div class="table-card">
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>User</th>
+                            <th>Role</th>
+                            <th>Servers</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>
+                                <strong>Saro</strong>
+                                <small>Owner</small>
+                            </td>
+                            <td><span class="badge owner">Owner</span></td>
+                            <td>All Servers</td>
+                            <td><span class="online">● Active</span></td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <strong>ExampleUser</strong>
+                                <small>User</small>
+                            </td>
+                            <td><span class="badge user">User</span></td>
+                            <td>Survival</td>
+                            <td><span class="online">● Active</span></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <section id="page-backups" class="page">
+
+            <h3>Backups</h3>
+            <p class="muted">Server backups will appear here.</p>
+
+            <div class="empty">
+                💾
+                <h3>No backups yet</h3>
+                <p>Create your first backup from a server.</p>
+            </div>
+
+        </section>
+
+
+        <section id="page-settings" class="page">
+
+            <h3>Panel Settings</h3>
+
+            <div class="settings-card">
+
+                <label>Panel Name</label>
+                <input value="Saro Hosting">
+
+                <label>Theme</label>
+                <select>
+                    <option>Dark</option>
+                    <option>Light</option>
+                </select>
+
+                <button class="primary-btn">
+                    Save Settings
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+</div>
+
+
+<!-- Create Server Modal -->
+
+<div id="serverModal" class="modal">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+            <h2>Create Server</h2>
+            <button onclick="closeCreateServer()">×</button>
+        </div>
+
+        <label>Server Name</label>
+        <input id="serverName" placeholder="Survival">
+
+        <label>Server Software</label>
+        <select id="software">
+            <option>Paper</option>
+            <option>Purpur</option>
+            <option>Vanilla</option>
+        </select>
+
+        <label>Minecraft Version</label>
+        <select id="version">
+            <option>1.21.11</option>
+            <option>1.21.10</option>
+            <option>1.21.9</option>
+        </select>
+
+        <label>RAM</label>
+        <select id="ram">
+            <option>2 GB</option>
+            <option>4 GB</option>
+            <option>6 GB</option>
+            <option>8 GB</option>
+        </select>
+
+        <button class="primary-btn full" onclick="createServer()">
+            Create Server
+        </button>
+
+    </div>
+
+</div>
+
+<script src="js/app.js"></script>
+
+</body>
+</html>
